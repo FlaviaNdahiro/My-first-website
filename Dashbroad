@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A learning dashboard built with nothing but HTML and CSS: semantic markup, flexbox, grid and forms."
+    />
+    <title>Dashboard · My First Website</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="app">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <p class="brand">My First Website<span>HTML &amp; CSS only</span></p>
+
+        <p class="nav-label">Navigation</p>
+        <nav class="side-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html" aria-current="page">Dashboard</a></li>
+            <li><a href="index2.html">CSS Selectors</a></li>
+            <li><a href="flex.html">Flexbox</a></li>
+            <li><a href="grid.html">Grid</a></li>
+            <li><a href="form.html">Registration</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+          </ul>
+        </nav>
+
+        <p class="side-note">
+          Every page on this site reuses one grid layout the same sketch from
+          the Grid lesson.
+        </p>
+      </aside>
+
+      <!-- ================= TOPBAR ================= -->
+      <header class="topbar">
+        <div>
+          <h1>Dashboard</h1>
+          <p class="crumbs">Home · Overview</p>
+        </div>
+        <div class="topbar-actions">
+          <a class="btn" href="grid.html">See the layout</a>
+          <a class="btn btn-solid" href="form.html">Register</a>
+        </div>
+      </header>
+
+      <!-- ================= MAIN ================= -->
+      <main class="main panel" id="main">
+        <h2>Welcome to the build</h2>
+        <p class="lede">
+          This started as a handful of separate practice files. They are now one
+          website: a single dashboard layout, five pages, and one stylesheet
+          no JavaScript anywhere.
+        </p>
+
+        <div class="stats">
+          <div class="stat"><b>5</b><span>Pages</span></div>
+          <div class="stat"><b>1</b><span>Stylesheet</span></div>
+          <div class="stat"><b>0</b><span>Lines of JS</span></div>
+          <div class="stat"><b>3</b><span>Breakpoints</span></div>
+        </div>
+
+        <section>
+          <h2>The lessons so far</h2>
+          
+          <div class="cards">
+            <article class="card">
+              <h3>Understanding HTML</h3>
+              <p>
+                Semantic elements are critical for a modern web page. A
+                <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+                <code>&lt;main&gt;</code> and <code>&lt;footer&gt;</code> tell
+                browsers and screen readers what each region <em>means</em>,
+                not just how it looks.
+              </p>
+              <a href="index2.html">Read the selectors lesson →</a>
+            </article>
+
+            <article class="card">
+              <h3>Understanding CSS</h3>
+              <p>
+                CSS is the styling language for the web. Selectors decide
+                <em>what</em> gets styled, the cascade decides <em>which</em>
+                rule wins, and the box model decides how much room every element
+                takes up.
+              </p>
+              <a href="index2.html">Try the live demo →</a>
+            </article>
+
+            <article class="card">
+              <h3>Flexbox</h3>
+              <p>
+                One direction at a time. Flexbox distributes space along a
+                single axis, which makes it the right tool for navigation bars,
+                button rows and toolbars.
+              </p>
+              <a href="flex.html">Open the flex demo →</a>
+            </article>
+
+            <article class="card">
+              <h3>Grid</h3>
+              <p>
+                Two directions at once. Grid places items into named rows and
+                columns the reason this page has a sidebar, a topbar and three
+                side panels that all hold their position.
+              </p>
+              <a href="grid.html">Open the grid demo →</a>
+            </article>
+
+            <article class="card">
+              <h3>Forms</h3>
+              <p>
+                Inputs, labels, selects, radio groups and a textarea, wired up
+                with proper <code>for</code> and <code>id</code> pairs so every
+                label actually belongs to its field.
+              </p>
+              <a href="form.html">Fill in the form →</a>
+            </article>
+
+            <article class="card">
+              <h3>Responsiveness</h3>
+              <p>
+                The layout reflows three times: four columns on a desktop, three
+                on a laptop, and a single stacked column on a phone with the
+                sidebar turned into a scrollable strip of pills.
+              </p>
+              <a href="grid.html">See how it reflows →</a>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <h2>How this page is put together</h2>
+          <p>
+            The whole site is one CSS grid with six named areas. Each page fills
+            the same slots with different content, so navigating never changes
+            the furniture around you.
+          </p>
+          <pre><code>.app {
+  display: grid;
+  grid-template-areas:
+    "side  nav   nav   nav"
+    "side  main  main  hist"
+    "side  prof  prof  user"
+    "side  foot  foot  foot";
+}</code></pre>
+          <div class="note">
+            <strong>Try it:</strong> drag the edge of your browser window
+            narrower. At 1180px the history panel slides under the main column,
+            and at 860px everything becomes a single column.
+          </div>
+        </section>
+      </main>
+
+      <!-- ================= HISTORY ================= -->
+      <section class="history">
+        <h2>Learning history</h2>
+        <ol>
+          <li>
+            <strong>Semantic HTML</strong>
+            <span>header, nav, main, article, footer</span>
+          </li>
+          <li>
+            <strong>Forms &amp; CSS basics</strong>
+            <span>A styled registration page</span>
+          </li>
+          <li>
+            <strong>Selectors</strong>
+            <span>Descendant, child and sibling</span>
+          </li>
+          <li>
+            <strong>Flexbox</strong>
+            <span>One axis, wrap, order, flex-grow</span>
+          </li>
+          <li>
+            <strong>CSS Grid</strong>
+            <span>Rows, columns, spans, named areas</span>
+          </li>
+          <li>
+            <strong>Responsive design</strong>
+            <span>Media queries and fluid units</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ================= PROFILES ================= -->
+      <section class="profiles">
+        <h2>Study group</h2>
+        <ul class="avatars">
+          <li>
+            <span class="avatar" aria-hidden="true">DM</span>
+            <span><b>Derrick M.</b><span>Building this site</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-2" aria-hidden="true">AK</span>
+            <span><b>Alice K.</b><span>Reviewing markup</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-3" aria-hidden="true">JB</span>
+            <span><b>Jean B.</b><span>Testing on mobile</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-4" aria-hidden="true">SN</span>
+            <span><b>Sam N.</b><span>Checking contrast</span></span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ================= USER INFO ================= -->
+      <section class="userinfo">
+        <h2>User information</h2>
+        <dl>
+          <dt>Name</dt>
+          <dd>Derrick Mugisha</dd>
+          <dt>Role</dt>
+          <dd>Front-end learner</dd>
+          <dt>Current unit</dt>
+          <dd>Layout &amp; responsiveness</dd>
+          <dt>Stack</dt>
+          <dd>HTML · CSS</dd>
+          <dt>Progress</dt>
+          <dd>6 of 6 lessons</dd>
+        </dl>
+      </section>
+
+      <!-- ================= FOOTER ================= -->
+      <footer class="footer">
+        <p>© 2026 My Tech Blog · Built by hand with HTML and CSS.</p>
+        <nav aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="index2.html">CSS Selectors</a>
+          <a href="flex.html">Flexbox</a>
+          <a href="grid.html">Grid</a>
+          <a href="form.html">Registration</a>
+          <a href="docs.html">Documentation</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

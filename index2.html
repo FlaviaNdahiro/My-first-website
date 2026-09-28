@@ -1,23 +1,248 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CSS selectors explained with a live demo: descendant, child and adjacent sibling."
+    />
+    <title>CSS Selectors · My First Website</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
 
-    <div class="card">
-    <p>This paragraph WILL be styled (direct child).</p>
-    <div>
-        <p>This paragraph WILL ALSO be styled (deeply nested descendant).</p>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="app">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <p class="brand">My First Website<span>HTML &amp; CSS only</span></p>
+
+        <p class="nav-label">Navigation</p>
+        <nav class="side-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="index2.html" aria-current="page">CSS Selectors</a></li>
+            <li><a href="flex.html">Flexbox</a></li>
+            <li><a href="grid.html">Grid</a></li>
+            <li><a href="form.html">Registration</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+          </ul>
+        </nav>
+
+        <p class="side-note">
+          Every page on this site reuses one grid layout — the same sketch from
+          the Grid lesson.
+        </p>
+      </aside>
+
+      <!-- ================= TOPBAR ================= -->
+      <header class="topbar">
+        <div>
+          <h1>CSS Selectors</h1>
+          <p class="crumbs"><a href="index.html">Home</a> · Lessons · Selectors</p>
+        </div>
+        <div class="topbar-actions">
+          <a class="btn" href="dashboard.html">← Dashboard</a>
+          <a class="btn btn-solid" href="flex.html">Next: Flexbox →</a>
+        </div>
+      </header>
+
+      <!-- ================= MAIN ================= -->
+      <main class="main panel" id="main">
+        <h2>Choosing what gets styled</h2>
+        <p class="lede">
+          A selector is the part of a CSS rule before the curly braces. It
+          answers one question: which elements does this rule apply to? Three of
+          them do most of the work.
+        </p>
+
+        <section>
+          <h3>1. Descendant selector — <code>.card p</code></h3>
+          <p>
+            A space between two selectors means <em>anywhere inside</em>. Every
+            paragraph inside the card is matched, no matter how deeply it is
+            nested.
+          </p>
+
+          <h3>2. Child selector — <code>.card &gt; p</code></h3>
+          <p>
+            A <code>&gt;</code> means <em>direct child only</em>. A paragraph
+            wrapped in another <code>&lt;div&gt;</code> would be skipped.
+          </p>
+
+          <h3>3. Adjacent sibling — <code>h3 + p</code></h3>
+          <p>
+            A <code>+</code> matches only the single element that comes
+            immediately after, at the same level. It is the selector behind
+            &ldquo;style the first paragraph after a heading&rdquo;.
+          </p>
+        </section>
+
+        <section>
+          <h2>Live demo</h2>
+          <p>
+            Everything below is styled by selectors alone — no extra classes on
+            the individual paragraphs.
+          </p>
+
+          <div class="selector-demo">
+            <div class="demo-card">
+              <p>This paragraph WILL be styled (direct child of the card).</p>
+              <div>
+                <p>
+                  This paragraph WILL ALSO be styled (deeply nested descendant).
+                </p>
+              </div>
+            </div>
+
+            <h3>Section heading</h3>
+            <p>Targeted! This paragraph immediately follows the heading.</p>
+            <p>NOT targeted — this is the second paragraph.</p>
+            <p>This paragraph WILL NOT be styled (outside the card).</p>
+          </div>
+
+          <pre><code>/* every p inside the card, however deep */
+.selector-demo .demo-card p { color: brown; font-weight: 600; }
+
+/* only the p immediately after the heading */
+.selector-demo h3 + p { background-color: antiquewhite; }</code></pre>
+        </section>
+
+        <section>
+          <h2>Quick reference</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Selector</th>
+                  <th>Reads as</th>
+                  <th>Matches</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.card p</code></td>
+                  <td>descendant</td>
+                  <td>Any p inside .card, at any depth</td>
+                </tr>
+                <tr>
+                  <td><code>.card &gt; p</code></td>
+                  <td>child</td>
+                  <td>Only p one level down</td>
+                </tr>
+                <tr>
+                  <td><code>h3 + p</code></td>
+                  <td>adjacent sibling</td>
+                  <td>The one p right after an h3</td>
+                </tr>
+                <tr>
+                  <td><code>h3 ~ p</code></td>
+                  <td>general sibling</td>
+                  <td>Every later p sharing the parent</td>
+                </tr>
+                <tr>
+                  <td><code>a:hover</code></td>
+                  <td>pseudo-class</td>
+                  <td>A link while the pointer is on it</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note">
+            <strong>Keep demos scoped.</strong> A bare <code>h3 + p</code> rule
+            would reach into every page of this site. Prefixing it with
+            <code>.selector-demo</code> keeps the experiment inside its box.
+          </div>
+        </section>
+      </main>
+
+      <!-- ================= HISTORY ================= -->
+      <section class="history">
+        <h2>Learning history</h2>
+        <ol>
+          <li>
+            <strong>Semantic HTML</strong>
+            <span>header, nav, main, article, footer</span>
+          </li>
+          <li>
+            <strong>Forms &amp; CSS basics</strong>
+            <span>A styled registration page</span>
+          </li>
+          <li>
+            <strong>Selectors</strong>
+            <span>Descendant, child and sibling</span>
+          </li>
+          <li>
+            <strong>Flexbox</strong>
+            <span>One axis, wrap, order, flex-grow</span>
+          </li>
+          <li>
+            <strong>CSS Grid</strong>
+            <span>Rows, columns, spans, named areas</span>
+          </li>
+          <li>
+            <strong>Responsive design</strong>
+            <span>Media queries and fluid units</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ================= PROFILES ================= -->
+      <section class="profiles">
+        <h2>Study group</h2>
+        <ul class="avatars">
+          <li>
+            <span class="avatar" aria-hidden="true">DM</span>
+            <span><b>Derrick M.</b><span>Building this site</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-2" aria-hidden="true">AK</span>
+            <span><b>Alice K.</b><span>Reviewing markup</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-3" aria-hidden="true">JB</span>
+            <span><b>Jean B.</b><span>Testing on mobile</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-4" aria-hidden="true">SN</span>
+            <span><b>Sam N.</b><span>Checking contrast</span></span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ================= USER INFO ================= -->
+      <section class="userinfo">
+        <h2>User information</h2>
+        <dl>
+          <dt>Name</dt>
+          <dd>Derrick Mugisha</dd>
+          <dt>Role</dt>
+          <dd>Front-end learner</dd>
+          <dt>Current unit</dt>
+          <dd>Layout &amp; responsiveness</dd>
+          <dt>Stack</dt>
+          <dd>HTML · CSS</dd>
+          <dt>Progress</dt>
+          <dd>6 of 6 lessons</dd>
+        </dl>
+      </section>
+
+      <!-- ================= FOOTER ================= -->
+      <footer class="footer">
+        <p>© 2026 My Tech Blog · Built by hand with HTML and CSS.</p>
+        <nav aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="index2.html">CSS Selectors</a>
+          <a href="flex.html">Flexbox</a>
+          <a href="grid.html">Grid</a>
+          <a href="form.html">Registration</a>
+          <a href="docs.html">Documentation</a>
+        </nav>
+      </footer>
     </div>
-</div>
-
-<h2>Section Heading</h2>
-<p>Targeted! This paragraph immediately follows the h2.</p>
-<p>NOT targeted! This is the second paragraph.</p>
-<p>This paragraph WILL NOT be styled (outside .card).</p>
-</body>
+  </body>
 </html>

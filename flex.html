@@ -1,30 +1,255 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-<div class="plarent">
-    <div class="child">1</div>
-    <div class="child">2</div>
-    <div class="child">3</div>
-    <div class="child">4</div>
-    <div class="child">5</div>
-    <div class="child">6</div>
-    <div class="child">7</div>
-    <div class="child">8</div>
-    <div class="child">9</div>
-    <div class="child">10</div>
-    <div class="child">11</div>
-    
-    
-    
-       
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Flexbox study: one axis at a time, with a live demo of wrap, order, flex-grow and align-self."
+    />
+    <title>Flexbox · My First Website</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
 
-</div>
-</body>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="app">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <p class="brand">My First Website<span>HTML &amp; CSS only</span></p>
+
+        <p class="nav-label">Navigation</p>
+        <nav class="side-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="index2.html">CSS Selectors</a></li>
+            <li><a href="flex.html" aria-current="page">Flexbox</a></li>
+            <li><a href="grid.html">Grid</a></li>
+            <li><a href="form.html">Registration</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+          </ul>
+        </nav>
+
+        <p class="side-note">
+          Every page on this site reuses one grid layout — the same sketch from
+          the Grid lesson.
+        </p>
+      </aside>
+
+      <!-- ================= TOPBAR ================= -->
+      <header class="topbar">
+        <div>
+          <h1>Flexbox</h1>
+          <p class="crumbs"><a href="index.html">Home</a> · Lessons · Flexbox</p>
+        </div>
+        <div class="topbar-actions">
+          <a class="btn" href="index2.html">← Selectors</a>
+          <a class="btn btn-solid" href="grid.html">Next: Grid →</a>
+        </div>
+      </header>
+
+      <!-- ================= MAIN ================= -->
+      <main class="main panel" id="main">
+        <h2>One axis at a time</h2>
+        <p class="lede">
+          Flexbox lays children out along a single direction — a row or a column
+          — and then shares the leftover space between them. That makes it the
+          right tool for nav bars, button rows and toolbars, and the wrong tool
+          for a full page layout.
+        </p>
+
+        <section>
+          <h2>Live demo</h2>
+          <p>
+            Four boxes in a flex container. The second one is the one being
+            experimented on: it has <code>order: 2</code> so it moves to the
+            end, and <code>flex: 1 1 100px</code> so it absorbs the spare room.
+          </p>
+
+          <div class="flex-demo">
+            <div class="child">1</div>
+            <div class="child">2</div>
+            <div class="child">3</div>
+            <div class="child">4</div>
+          </div>
+
+          <pre><code>.flex-demo {
+  display: flex;
+  justify-content: space-evenly;  /* along the main axis  */
+  align-items: center;            /* across the cross axis */
+  flex-wrap: wrap;                /* allow a second line   */
+  gap: 20px;
+}
+
+.flex-demo .child:nth-child(2) {
+  order: 2;            /* jump to the end             */
+  flex: 1 1 100px;     /* grow, shrink, 100px basis   */
+  align-self: center;  /* override align-items for me */
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Properties on the container</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>What it controls</th>
+                  <th>Common values</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>flex-direction</code></td>
+                  <td>Which way the main axis points</td>
+                  <td>row · column · row-reverse</td>
+                </tr>
+                <tr>
+                  <td><code>justify-content</code></td>
+                  <td>Spacing along the main axis</td>
+                  <td>flex-start · center · space-between · space-evenly</td>
+                </tr>
+                <tr>
+                  <td><code>align-items</code></td>
+                  <td>Position across the cross axis</td>
+                  <td>stretch · center · flex-end · baseline</td>
+                </tr>
+                <tr>
+                  <td><code>flex-wrap</code></td>
+                  <td>Whether items may start a new line</td>
+                  <td>nowrap · wrap</td>
+                </tr>
+                <tr>
+                  <td><code>align-content</code></td>
+                  <td>Spacing between wrapped lines</td>
+                  <td>stretch · center · space-between</td>
+                </tr>
+                <tr>
+                  <td><code>gap</code></td>
+                  <td>Space between items</td>
+                  <td>Any length, e.g. <code>20px</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>Properties on the children</h2>
+          <ul>
+            <li><code>order</code> — reorders visually without touching the HTML.</li>
+            <li><code>flex-grow</code> — share of the spare space this item takes.</li>
+            <li><code>flex-shrink</code> — how willingly it gives space back.</li>
+            <li><code>flex-basis</code> — its size before growing or shrinking.</li>
+            <li><code>align-self</code> — overrides <code>align-items</code> for one item.</li>
+          </ul>
+
+          <div class="note">
+            <strong>Two fixes worth remembering.</strong>
+            <code>align-content</code> only does something once the items wrap,
+            and there is no such value as <code>flex-center</code> — the
+            centring keyword is plain <code>center</code>.
+          </div>
+        </section>
+
+        <section>
+          <h2>Flex or grid?</h2>
+          <p>
+            Reach for flexbox when the content decides the sizes and you only
+            care about one direction. Reach for
+            <a href="grid.html">grid</a> when you are placing things into rows
+            <em>and</em> columns — which is exactly what the shell around this
+            text is doing.
+          </p>
+        </section>
+      </main>
+
+      <!-- ================= HISTORY ================= -->
+      <section class="history">
+        <h2>Learning history</h2>
+        <ol>
+          <li>
+            <strong>Semantic HTML</strong>
+            <span>header, nav, main, article, footer</span>
+          </li>
+          <li>
+            <strong>Forms &amp; CSS basics</strong>
+            <span>A styled registration page</span>
+          </li>
+          <li>
+            <strong>Selectors</strong>
+            <span>Descendant, child and sibling</span>
+          </li>
+          <li>
+            <strong>Flexbox</strong>
+            <span>One axis, wrap, order, flex-grow</span>
+          </li>
+          <li>
+            <strong>CSS Grid</strong>
+            <span>Rows, columns, spans, named areas</span>
+          </li>
+          <li>
+            <strong>Responsive design</strong>
+            <span>Media queries and fluid units</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ================= PROFILES ================= -->
+      <section class="profiles">
+        <h2>Study group</h2>
+        <ul class="avatars">
+          <li>
+            <span class="avatar" aria-hidden="true">DM</span>
+            <span><b>Derrick M.</b><span>Building this site</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-2" aria-hidden="true">AK</span>
+            <span><b>Alice K.</b><span>Reviewing markup</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-3" aria-hidden="true">JB</span>
+            <span><b>Jean B.</b><span>Testing on mobile</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-4" aria-hidden="true">SN</span>
+            <span><b>Sam N.</b><span>Checking contrast</span></span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ================= USER INFO ================= -->
+      <section class="userinfo">
+        <h2>User information</h2>
+        <dl>
+          <dt>Name</dt>
+          <dd>Derrick Mugisha</dd>
+          <dt>Role</dt>
+          <dd>Front-end learner</dd>
+          <dt>Current unit</dt>
+          <dd>Layout &amp; responsiveness</dd>
+          <dt>Stack</dt>
+          <dd>HTML · CSS</dd>
+          <dt>Progress</dt>
+          <dd>6 of 6 lessons</dd>
+        </dl>
+      </section>
+
+      <!-- ================= FOOTER ================= -->
+      <footer class="footer">
+        <p>© 2026 My Tech Blog · Built by hand with HTML and CSS.</p>
+        <nav aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="index2.html">CSS Selectors</a>
+          <a href="flex.html">Flexbox</a>
+          <a href="grid.html">Grid</a>
+          <a href="form.html">Registration</a>
+          <a href="docs.html">Documentation</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
 </html>

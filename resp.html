@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Complete documentation for this site: the layout grid, the stylesheet, every page and every responsive breakpoint."
+    />
+    <title>Documentation · My First Website</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="app">
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <p class="brand">My First Website<span>HTML &amp; CSS only</span></p>
+
+        <p class="nav-label">Navigation</p>
+        <nav class="side-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="index2.html">CSS Selectors</a></li>
+            <li><a href="flex.html">Flexbox</a></li>
+            <li><a href="grid.html">Grid</a></li>
+            <li><a href="form.html">Registration</a></li>
+            <li><a href="docs.html" aria-current="page">Documentation</a></li>
+          </ul>
+        </nav>
+
+        <p class="side-note">
+          Every page on this site reuses one grid layout — the same sketch from
+          the Grid lesson.
+        </p>
+      </aside>
+
+      <!-- ================= TOPBAR ================= -->
+      <header class="topbar">
+        <div>
+          <h1>Documentation</h1>
+          <p class="crumbs"><a href="index.html">Home</a> · Documentation</p>
+        </div>
+        <div class="topbar-actions">
+          <a class="btn" href="index.html">← Intro page</a>
+          <a class="btn btn-solid" href="dashboard.html">Dashboard</a>
+        </div>
+      </header>
+
+      <!-- ================= MAIN ================= -->
+      <main class="main panel" id="main">
+        <h2>How this website works</h2>
+        <p class="lede">
+          A complete walkthrough of the build: every file, every region of the
+          layout, every section of the stylesheet, and what each page on the
+          site is actually demonstrating. Written for the person who has to
+          change it in six months.
+        </p>
+
+        <nav class="toc" aria-label="Table of contents">
+          <h3>On this page</h3>
+          <ol>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#files">The files</a></li>
+            <li><a href="#two-shells">Two page shells</a></li>
+            <li><a href="#layout">The layout grid</a></li>
+            <li><a href="#regions">The six regions</a></li>
+            <li><a href="#stylesheet">Inside the stylesheet</a></li>
+            <li><a href="#tokens">Design tokens</a></li>
+            <li><a href="#responsive">Responsive behaviour</a></li>
+            <li><a href="#pages">Page by page</a></li>
+            <li><a href="#patterns">Patterns worth reusing</a></li>
+            <li><a href="#accessibility">Accessibility decisions</a></li>
+            <li><a href="#changes">What changed from the originals</a></li>
+            <li><a href="#extending">Extending the site</a></li>
+            <li><a href="#running">Running it locally</a></li>
+          </ol>
+        </nav>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="overview">1. Overview</h2>
+          <p>
+            The project began as six unrelated practice files, each opened on
+            its own. They are now a single website with shared navigation, one
+            stylesheet and a consistent layout.
+          </p>
+          <p>
+            The organising idea is simple: the 5 × 5 grid exercise from the Grid
+            lesson was never really an exercise — it was a dashboard. So it was
+            promoted from a demo to the actual chrome of the site. Every lesson
+            page now lives inside it.
+          </p>
+          <div class="note">
+            <strong>Constraints.</strong> HTML and CSS only. No JavaScript, no
+            build step, no dependencies, no images. Open any file directly in a
+            browser and it works.
+          </div>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="files">2. The files</h2>
+          <div class="filetree">my-first-website/
+├── <b>index.html</b>       <i>— intro / landing page (no dashboard shell)</i>
+├── <b>dashboard.html</b>   <i>— the overview page</i>
+├── <b>index2.html</b>      <i>— CSS selectors lesson</i>
+├── <b>flex.html</b>        <i>— flexbox lesson</i>
+├── <b>grid.html</b>        <i>— grid lesson (the layout explained)</i>
+├── <b>form.html</b>        <i>— registration form</i>
+├── <b>docs.html</b>        <i>— this page</i>
+└── css/
+    └── <b>styles.css</b>   <i>— the one stylesheet, ~1400 lines</i></div>
+          <p>
+            Every HTML file links the same stylesheet with a
+            <em>relative</em> path:
+          </p>
+          <pre><code>&lt;link rel="stylesheet" href="css/styles.css" /&gt;</code></pre>
+          <div class="note">
+            <strong>Why relative, not <code>/css/styles.css</code>?</strong> A
+            leading slash means &ldquo;from the root of the server&rdquo;. When
+            you open a file straight from disk with
+            <code>file://</code>, that root is the root of your hard drive, so
+            the stylesheet silently fails to load and the page appears unstyled.
+            The relative path works both from disk and from a server.
+          </div>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="two-shells">3. Two page shells</h2>
+          <p>
+            The site uses two different page structures, on purpose.
+          </p>
+          <h3>The intro shell — <code>index.html</code> only</h3>
+          <p>
+            A landing page has one job: say what the site is and send you
+            somewhere useful. It does not need a sidebar, a history panel or a
+            user card, so it does not have them. Instead it is a single centred
+            column of full-width bands:
+          </p>
+          <pre><code>&lt;body class="intro-page"&gt;
+  &lt;header class="intro-header"&gt;&lt;div class="wrap"&gt;…&lt;/div&gt;&lt;/header&gt;
+  &lt;main&gt;
+    &lt;section class="hero"&gt;&lt;div class="wrap"&gt;…&lt;/div&gt;&lt;/section&gt;
+    &lt;section class="band"&gt;&lt;div class="wrap"&gt;…&lt;/div&gt;&lt;/section&gt;
+    &lt;section class="band band-tint"&gt;&lt;div class="wrap"&gt;…&lt;/div&gt;&lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer class="intro-footer"&gt;&lt;div class="wrap"&gt;…&lt;/div&gt;&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+          <p>
+            Each <code>section</code> stretches edge to edge so its background
+            colour can run the full width of the window, while the
+            <code>.wrap</code> inside it keeps the text in a readable column:
+          </p>
+          <pre><code>.wrap {
+  width: min(960px, 100% - 40px);
+  margin-inline: auto;
+}</code></pre>
+          <p>
+            That one declaration is the whole trick. <code>min()</code> picks
+            whichever is smaller: 960px on a wide screen, or the full width
+            minus a 20px gutter on each side when the window is narrow. It
+            replaces a <code>max-width</code>, a <code>padding</code> and a
+            media query with a single line, and it can never produce a
+            horizontal scrollbar.
+          </p>
+
+          <h3>The dashboard shell — every other page</h3>
+          <p>
+            The remaining six pages share one structure. Only the topbar text
+            and the <code>&lt;main&gt;</code> content differ between them:
+          </p>
+          <pre><code>&lt;body&gt;
+  &lt;a class="skip-link" href="#main"&gt;Skip to main content&lt;/a&gt;
+  &lt;div class="app"&gt;
+    &lt;aside class="sidebar"&gt;…&lt;/aside&gt;
+    &lt;header class="topbar"&gt;…&lt;/header&gt;
+    &lt;main class="main panel" id="main"&gt;…&lt;/main&gt;
+    &lt;section class="history"&gt;…&lt;/section&gt;
+    &lt;section class="profiles"&gt;…&lt;/section&gt;
+    &lt;section class="userinfo"&gt;…&lt;/section&gt;
+    &lt;footer class="footer"&gt;…&lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+          <div class="note">
+            <strong>The cost of no build step.</strong> With no JavaScript and
+            no templating, the sidebar and the three side panels are copied into
+            every file. Change the navigation and you change it in six places.
+            That is the honest trade for a site that needs nothing installed to
+            run — and it is the first thing a template engine or an include
+            would fix.
+          </div>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="layout">4. The layout grid</h2>
+          <p>
+            <code>.app</code> is the only element that defines the page layout.
+            Everything else just says which slot it belongs in.
+          </p>
+          <pre><code>.app {
+  display: grid;
+  gap: var(--gap);
+  padding: var(--gap);
+  min-height: 100vh;
+  grid-template-columns: var(--side-w) 1fr 1fr var(--aside-w);
+  grid-template-rows: auto 1fr auto auto;
+  grid-template-areas:
+    "side  nav   nav   nav"
+    "side  main  main  hist"
+    "side  prof  prof  user"
+    "side  foot  foot  foot";
+}</code></pre>
+          <p>Read the quoted block as a picture of the page. Four strings are four rows; four words per string are four columns; a name repeated across neighbouring cells means that region spans them.</p>
+
+          <h3>The columns</h3>
+          <dl class="defs">
+            <dt>var(--side-w)</dt>
+            <dd>A fixed 240px sidebar. Navigation should not change width as you move between pages.</dd>
+            <dt>1fr 1fr</dt>
+            <dd>Two flexible columns for the main content. Two rather than one so the bottom row can split into a wide profile panel and a narrower user card.</dd>
+            <dt>var(--aside-w)</dt>
+            <dd>A fixed 300px rail for the history panel.</dd>
+          </dl>
+
+          <h3>The rows</h3>
+          <dl class="defs">
+            <dt>auto</dt>
+            <dd>The topbar takes exactly the height of its content.</dd>
+            <dt>1fr</dt>
+            <dd>The main row absorbs every remaining pixel, so a short page still fills the screen instead of leaving the footer floating in the middle.</dd>
+            <dt>auto auto</dt>
+            <dd>The profile/user row and the footer, each as tall as they need to be.</dd>
+          </dl>
+
+          <p>Assigning an element to a region takes one line each:</p>
+          <pre><code>.sidebar  { grid-area: side; }
+.topbar   { grid-area: nav;  }
+.main     { grid-area: main; }
+.history  { grid-area: hist; }
+.profiles { grid-area: prof; }
+.userinfo { grid-area: user; }
+.footer   { grid-area: foot; }</code></pre>
+          <div class="note">
+            <strong>Why named areas instead of line numbers?</strong> The
+            original demo used <code>grid-column: span 3 / span 3;
+            grid-column-start: 2;</code> — correct, but unreadable, and every
+            breakpoint means recalculating numbers by hand. With named areas a
+            breakpoint is just a new picture, and the panels follow it
+            automatically.
+          </div>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="regions">5. The six regions</h2>
+          <p>
+            Each region is a plain HTML element with one job. They map directly
+            onto the boxes in the original grid sketch.
+          </p>
+
+          <h3><code>.sidebar</code> — navigation</h3>
+          <p>
+            The brand, the page list and a short note. On desktop it is sticky,
+            so it stays in view while a long article scrolls past:
+          </p>
+          <pre><code>.sidebar {
+  position: sticky;
+  top: var(--gap);
+  align-self: start;                        /* don't stretch to row height */
+  max-height: calc(100vh - (var(--gap) * 2));
+  overflow-y: auto;                         /* scroll if the list grows */
+}</code></pre>
+          <p>
+            <code>align-self: start</code> matters. Without it the sidebar
+            stretches to fill its grid area, and a sticky element that is
+            already as tall as its container has nothing to stick to — it simply
+            scrolls away.
+          </p>
+          <p>
+            The current page is marked with
+            <code>aria-current="page"</code> rather than an
+            <code>.active</code> class. It is a real attribute that screen
+            readers announce, and it styles just as easily:
+          </p>
+          <pre><code>.side-nav a[aria-current="page"] {
+  background-color: var(--navy-600);
+  border-left-color: var(--blue-300);
+}</code></pre>
+
+          <h3><code>.topbar</code> — page title and actions</h3>
+          <p>
+            A flex row: the page title and breadcrumb on the left, buttons on
+            the right. <code>flex-wrap: wrap</code> lets the buttons drop to a
+            second line before anything is squeezed. Each lesson page puts
+            previous/next links here, so the site can be read straight through.
+          </p>
+
+          <h3><code>.main</code> — the content panel</h3>
+          <p>
+            The only region whose content changes from page to page. It carries
+            <code>id="main"</code>, the target of the skip link, and the
+            <code>.panel</code> class for the shared white-card look.
+          </p>
+
+          <h3><code>.history</code> — the right-hand rail</h3>
+          <p>
+            An ordered list of the lessons, numbered with a CSS counter rather
+            than the browser's default markers, so the numbers can be styled as
+            circles:
+          </p>
+          <pre><code>.history ol { counter-reset: hist; list-style: none; }
+.history li { counter-increment: hist; }
+.history li::before { content: counter(hist); /* the circle */ }</code></pre>
+
+          <h3><code>.profiles</code> — the study group</h3>
+          <p>
+            Avatars are CSS circles with initials inside — no image files, so
+            nothing to load and nothing to go missing. Each circle is
+            <code>aria-hidden="true"</code> because the person's name is already
+            written next to it; announcing &ldquo;DM&rdquo; before
+            &ldquo;Derrick M.&rdquo; would only be noise.
+          </p>
+
+          <h3><code>.userinfo</code> — the details card</h3>
+          <p>
+            A description list. <code>&lt;dl&gt;</code> is the right element for
+            label/value pairs, and a two-column grid puts each
+            <code>&lt;dt&gt;</code> beside its <code>&lt;dd&gt;</code> without
+            any extra markup:
+          </p>
+          <pre><code>.userinfo dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+}</code></pre>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="stylesheet">6. Inside the stylesheet</h2>
+          <p>
+            <code>css/styles.css</code> is one file in numbered sections, in the
+            order you would need them when reading top to bottom.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>#</th><th>Section</th><th>What lives there</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>Design tokens</td><td>Colours, spacing, widths and the font stack as custom properties</td></tr>
+                <tr><td>2</td><td>Reset / base</td><td>Box sizing, body defaults, the skip link, focus rings</td></tr>
+                <tr><td>3</td><td>App shell</td><td>The <code>.app</code> grid and the <code>.panel</code> look</td></tr>
+                <tr><td>4</td><td>Sidebar</td><td>Brand, sticky behaviour, nav links</td></tr>
+                <tr><td>5</td><td>Topbar</td><td>Title block, breadcrumbs, buttons</td></tr>
+                <tr><td>6</td><td>Main content</td><td>Headings, cards, stat tiles, code blocks, notes, tables</td></tr>
+                <tr><td>7</td><td>History panel</td><td>The counter-numbered list</td></tr>
+                <tr><td>8</td><td>Profile list</td><td>CSS avatars</td></tr>
+                <tr><td>9</td><td>User information</td><td>The two-column description list</td></tr>
+                <tr><td>10</td><td>Footer</td><td>Copyright and secondary navigation</td></tr>
+                <tr><td>11</td><td>Form</td><td>Inputs, selects, fieldsets, buttons</td></tr>
+                <tr><td>12</td><td>Lesson demos</td><td>The flex, grid and selector demonstrations</td></tr>
+                <tr><td>12a</td><td>Docs helpers</td><td>Table of contents, file tree, definition grids</td></tr>
+                <tr><td>12b</td><td>Intro page</td><td>Hero, bands, cards and steps for the landing page</td></tr>
+                <tr><td>13</td><td>Responsive</td><td>The three breakpoints</td></tr>
+                <tr><td>14</td><td>Print</td><td>Drops the chrome, keeps the article</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Demos are scoped</h3>
+          <p>
+            The selector lesson needs a rule like <code>h3 + p</code>. Written
+            bare, that rule would reach into every heading on every page of the
+            site. Prefixing it with the demo's own class keeps the experiment
+            inside its box:
+          </p>
+          <pre><code>/* not this */
+h3 + p { background-color: antiquewhite; }
+
+/* this */
+.selector-demo h3 + p { background-color: antiquewhite; }</code></pre>
+          <p>
+            The same applies to <code>.flex-demo</code> and
+            <code>.grid-demo</code>. This is the rule that made it safe to move
+            the lessons out of their own files and into a shared stylesheet.
+          </p>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="tokens">7. Design tokens</h2>
+          <p>
+            Every colour and key measurement is declared once on
+            <code>:root</code> and referenced by name everywhere else. Changing
+            the sidebar width or the accent colour is a one-line edit.
+          </p>
+          <pre><code>:root {
+  --navy-900: rgb(15, 35, 52);
+  --navy-800: rgb(23, 42, 57);
+  --navy-600: rgb(49, 73, 93);
+  --blue-300: rgb(148, 183, 213);
+  --cream:    antiquewhite;
+  --brown:    brown;
+
+  --side-w:  240px;
+  --aside-w: 300px;
+  --gap:     14px;
+  --radius:  14px;
+}</code></pre>
+          <p>
+            The palette is the one from the original grid sketch — the same five
+            colours, just given names. <code>brown</code> was already the accent
+            in the first stylesheet, so it stayed, and it is what marks every
+            heading and primary button.
+          </p>
+          <p>
+            Because tokens are inherited custom properties, a media query can
+            change the layout by redefining a value rather than by rewriting
+            rules:
+          </p>
+          <pre><code>@media (max-width: 1180px) {
+  :root { --side-w: 210px; }   /* every rule using it updates */
+}</code></pre>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="responsive">8. Responsive behaviour</h2>
+          <p>
+            Three breakpoints, each one redrawing the area picture rather than
+            hiding content. Nothing on this site is unavailable on a phone.
+          </p>
+
+          <h3>Above 1180px — four columns</h3>
+          <pre><code>"side  nav   nav   nav"
+"side  main  main  hist"
+"side  prof  prof  user"
+"side  foot  foot  foot"</code></pre>
+
+          <h3>861px to 1180px — three columns</h3>
+          <p>
+            The history rail is the first thing to go; it drops below the main
+            panel and its list becomes two columns so it does not become a long
+            thin strip:
+          </p>
+          <pre><code>@media (max-width: 1180px) {
+  :root { --side-w: 210px; }
+
+  .app {
+    grid-template-columns: var(--side-w) 1fr 1fr;
+    grid-template-areas:
+      "side  nav   nav"
+      "side  main  main"
+      "side  hist  hist"
+      "side  prof  user"
+      "side  foot  foot";
+  }
+
+  .history ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}</code></pre>
+
+          <h3>Up to 860px — one column</h3>
+          <p>
+            Everything stacks in reading order, and the sidebar stops being a
+            sidebar. Note that the topbar comes <em>first</em>: on a phone you
+            want to know what page you are on before you see the menu.
+          </p>
+          <pre><code>@media (max-width: 860px) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "nav" "side" "main" "hist" "prof" "user" "foot";
+  }
+
+  .sidebar { position: static; max-height: none; }
+
+  .side-nav ul {
+    flex-direction: row;   /* was a column */
+    overflow-x: auto;      /* swipeable strip of pills */
+  }
+
+  .side-nav a { white-space: nowrap; }
+}</code></pre>
+          <div class="note">
+            <strong><code>minmax(0, 1fr)</code>, not <code>1fr</code>.</strong>
+            A grid column sized <code>1fr</code> refuses to shrink below the
+            widest thing inside it. One long line of code would push the whole
+            page sideways. <code>minmax(0, 1fr)</code> allows the column to
+            shrink, and the overflow is then handled where it belongs — inside
+            the code block.
+          </div>
+
+          <h3>Below 560px — the demos simplify</h3>
+          <p>
+            Five equal grid columns on a phone would be unreadable, so the grid
+            demo stacks into a single column and the span rules are switched
+            off:
+          </p>
+          <pre><code>@media (max-width: 560px) {
+  .grid-demo {
+    grid-template-columns: 1fr;
+    aspect-ratio: auto;
+  }
+  .grid-demo > div {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+}</code></pre>
+          <p>
+            This is the one place in the stylesheet using
+            <code>!important</code>. The span declarations are equally specific,
+            so without it the later rule would not win.
+          </p>
+
+          <h3>Reflow without media queries</h3>
+          <p>
+            Card decks and the form's field pairs do not use breakpoints at all.
+            They wrap on their own when the space runs out:
+          </p>
+          <pre><code>.cards, .form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}</code></pre>
+          <p>
+            <code>auto-fit</code> fits as many 230px-minimum columns as there is
+            room for, then stretches them to fill the leftover space. Two
+            columns become one automatically, at whatever width that happens to
+            be — including inside a narrow panel on a wide screen, which a
+            viewport-based media query cannot detect.
+          </p>
+
+          <h3>Things that are allowed to be wider</h3>
+          <p>
+            The page body must never scroll sideways, but three things legitimately
+            can, each inside its own scrolling container:
+            <code>&lt;pre&gt;</code> code blocks, <code>.table-wrap</code>
+            around wide tables, and the mobile nav strip. Everything else is
+            constrained.
+          </p>
+
+          <h3>Fluid type and spacing</h3>
+          <pre><code>body   { font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem); }
+.hero h1 { font-size: clamp(1.9rem, 1.3rem + 3vw, 3.2rem); }
+.panel { padding: clamp(16px, 1rem + 1vw, 28px); }</code></pre>
+          <p>
+            <code>clamp(min, preferred, max)</code> scales smoothly between two
+            bounds instead of jumping at a breakpoint. Keeping a
+            <code>rem</code> in the middle value means the text still responds
+            when someone raises their browser's default font size — a pure
+            <code>vw</code> value would ignore that.
+          </p>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="pages">9. Page by page</h2>
+
+          <h3><code>index.html</code> — introduction</h3>
+          <p>
+            The landing page, and the only one without the dashboard shell. A
+            header, a gradient hero with two calls to action, a grid of six
+            cards linking to everything else, a numbered &ldquo;how it is
+            built&rdquo; list, and a footer. Each card is a single
+            <code>&lt;a&gt;</code> wrapping its whole content, so the tap target
+            is the entire box rather than a three-word link.
+          </p>
+
+          <h3><code>dashboard.html</code> — overview</h3>
+          <p>
+            The first page using the shell. Four stat tiles, six lesson cards
+            and a short explanation of the layout. It exists to show the six
+            regions working together with real content in them.
+          </p>
+
+          <h3><code>index2.html</code> — CSS selectors</h3>
+          <p>
+            Descendant (<code>.card p</code>), child (<code>.card &gt; p</code>)
+            and adjacent sibling (<code>h3 + p</code>), with a live demo and a
+            reference table. The demo paragraphs deliberately carry no classes:
+            the point is that the selectors do the choosing. Originally this file
+            had no styles at all — the rules it describes were never written —
+            so the demo now actually demonstrates something.
+          </p>
+
+          <h3><code>flex.html</code> — flexbox</h3>
+          <p>
+            Four boxes in a flex container, where the second has
+            <code>order: 2</code> and <code>flex: 1 1 100px</code> so you can
+            see reordering and growth at once. Tables cover the container
+            properties and the item properties separately, because that division
+            is the thing people most often get wrong.
+          </p>
+
+          <h3><code>grid.html</code> — CSS grid</h3>
+          <p>
+            The self-referential page: it shows the original 5 × 5 sketch, then
+            the named-area rewrite that the surrounding layout actually uses,
+            then the breakpoints. Reading it inside the layout it describes is
+            the point.
+          </p>
+
+          <h3><code>form.html</code> — registration</h3>
+          <p>
+            Name, email, phone, a subject select, a radio group in a fieldset,
+            and a message textarea. Fields pair up two-across on wide screens
+            and stack on narrow ones with no media query. Everything it
+            validates, the browser validates.
+          </p>
+
+          <h3><code>docs.html</code> — this page</h3>
+          <p>
+            A table of contents of same-page anchors, then one
+            <code>.doc-section</code> per topic. Each section has an
+            <code>id</code>, so any heading here can be linked to directly.
+          </p>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="patterns">10. Patterns worth reusing</h2>
+          <p>
+            Six small techniques carry most of the weight in this stylesheet.
+          </p>
+          <dl class="defs">
+            <dt>min() for widths</dt>
+            <dd><code>width: min(960px, 100% - 40px)</code> — a centred column with gutters, in one line, that can never overflow.</dd>
+            <dt>auto-fit + minmax</dt>
+            <dd>Grids that rewrap themselves based on the space they actually have, not the size of the window.</dd>
+            <dt>clamp()</dt>
+            <dd>Type and padding that scale smoothly between a floor and a ceiling instead of stepping at a breakpoint.</dd>
+            <dt>Named grid areas</dt>
+            <dd>A layout you can read as a picture, and a breakpoint that is just a different picture.</dd>
+            <dt>Custom properties</dt>
+            <dd>One place to change a colour or a width; media queries can redefine them instead of rewriting rules.</dd>
+            <dt>CSS counters</dt>
+            <dd>Numbered circles in the history list and the intro steps, with no numbers hard-coded in the HTML.</dd>
+          </dl>
+          <div class="note">
+            <strong>What is deliberately absent.</strong> No CSS framework, no
+            utility classes, no resets beyond four lines, no icon font, no web
+            font, and no JavaScript. Each of those would have been a dependency
+            to learn and maintain before the layout itself could be understood.
+          </div>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="accessibility">11. Accessibility decisions</h2>
+          <dl class="defs">
+            <dt>Skip link</dt>
+            <dd>Every page starts with a link to <code>#main</code>, hidden off-screen until it receives focus. Without it, a keyboard user tabs through the whole sidebar on every page.</dd>
+            <dt>Visible focus</dt>
+            <dd>A brown <code>:focus-visible</code> outline everywhere. The original form CSS had <code>outline: none</code>, which leaves keyboard users unable to see where they are.</dd>
+            <dt>aria-current</dt>
+            <dd>Marks the current page in the navigation for assistive technology, and doubles as the styling hook.</dd>
+            <dt>Label/id pairs</dt>
+            <dd>Every form control's <code>for</code> matches a real <code>id</code>. A <code>for</code> that points at nothing leaves the field with no accessible name at all.</dd>
+            <dt>Landmarks</dt>
+            <dd><code>header</code>, <code>nav</code>, <code>main</code>, <code>aside</code>, <code>footer</code> — so the page can be navigated by region rather than by scrolling.</dd>
+            <dt>aria-hidden avatars</dt>
+            <dd>The initials in each circle are decorative; the name is already written beside them.</dd>
+            <dt>Reduced motion</dt>
+            <dd>A <code>prefers-reduced-motion</code> block switches off transitions for anyone who has asked their system for less movement.</dd>
+            <dt>Colour contrast</dt>
+            <dd>White text sits on the dark navies; the pale blue and cream panels use dark text instead.</dd>
+          </dl>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="changes">12. What changed from the originals</h2>
+          <p>
+            The practice files were merged rather than rewritten, but a number
+            of real bugs were fixed on the way.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Was</th><th>Problem</th><th>Now</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>&lt;h1&gt;My Registration &lt;form ngSubmit…&gt;&lt;/form&gt;&lt;/h1&gt;</code></td>
+                  <td>An Angular form tag pasted inside a heading, in a project with no Angular</td>
+                  <td>Removed; the heading is just a heading</td>
+                </tr>
+                <tr>
+                  <td><code>&lt;/article&gt;</code> ×3 for two articles</td>
+                  <td>An unmatched closing tag</td>
+                  <td>Balanced markup on every page</td>
+                </tr>
+                <tr>
+                  <td><code>href="/css/styles.css"</code></td>
+                  <td>Breaks when the file is opened from disk</td>
+                  <td><code>href="css/styles.css"</code></td>
+                </tr>
+                <tr>
+                  <td><code>height: 100 vh</code></td>
+                  <td>Space before the unit — the declaration is ignored</td>
+                  <td>Removed; the shell handles height</td>
+                </tr>
+                <tr>
+                  <td><code>border: 1 px solid black</code></td>
+                  <td>Same problem, so no border ever appeared</td>
+                  <td>Valid borders throughout</td>
+                </tr>
+                <tr>
+                  <td><code>align-self: flex-center</code></td>
+                  <td>Not a real keyword</td>
+                  <td><code>align-self: center</code></td>
+                </tr>
+                <tr>
+                  <td><code>.Plarent</code></td>
+                  <td>Typo, and a capitalised class name</td>
+                  <td><code>.flex-demo</code></td>
+                </tr>
+                <tr>
+                  <td><code>&lt;label for="Full Name"&gt;</code></td>
+                  <td>Pointed at an <code>id</code> that did not exist on any element</td>
+                  <td><code>for="full-name"</code> matching a real <code>id</code></td>
+                </tr>
+                <tr>
+                  <td>Empty <code>&lt;fieldset&gt;</code></td>
+                  <td>A legend promising contact options, with no options</td>
+                  <td>Three working radio buttons sharing one <code>name</code></td>
+                </tr>
+                <tr>
+                  <td>Nested <code>.form-group</code>s</td>
+                  <td>Message and buttons were trapped inside the select's group</td>
+                  <td>Flat, sibling groups</td>
+                </tr>
+                <tr>
+                  <td><code>outline: none</code> on focus</td>
+                  <td>Keyboard users cannot see where they are</td>
+                  <td>A visible brown focus ring</td>
+                </tr>
+                <tr>
+                  <td>Three <code>&lt;style&gt;</code> blocks</td>
+                  <td>Layout rules duplicated per file and unable to be shared</td>
+                  <td>One stylesheet, with demos scoped to their own classes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="extending">13. Extending the site</h2>
+          <h3>Adding a page</h3>
+          <ol>
+            <li>Copy any lesson page — <code>flex.html</code> is the smallest — and rename it.</li>
+            <li>Change the <code>&lt;title&gt;</code>, the <code>&lt;meta name="description"&gt;</code>, the topbar heading and the breadcrumb.</li>
+            <li>Replace the contents of <code>&lt;main&gt;</code>.</li>
+            <li>Add the page to the sidebar list and the footer nav <em>in all seven files</em>, and move <code>aria-current="page"</code> onto the new page's own link in its own copy.</li>
+          </ol>
+          <div class="note">
+            Step 4 is the one that gets forgotten. If a page's sidebar disagrees
+            with the others, that is why.
+          </div>
+
+          <h3>Changing the look</h3>
+          <p>
+            Edit the tokens in section 1 of the stylesheet rather than hunting
+            through the rules. The accent colour, the navy shades, the sidebar
+            and rail widths, the gap and the corner radius are all defined once.
+          </p>
+
+          <h3>Changing the layout</h3>
+          <p>
+            Redraw <code>grid-template-areas</code> in section 3, and redraw it
+            again in each breakpoint in section 13. As long as the six region
+            names stay the same, no other rule needs touching. To move the
+            history rail to the left, for instance, swap the words:
+          </p>
+          <pre><code>grid-template-areas:
+  "side  nav   nav   nav"
+  "side  hist  main  main"   /* hist now sits left of main */
+  "side  prof  prof  user"
+  "side  foot  foot  foot";
+grid-template-columns: var(--side-w) var(--aside-w) 1fr 1fr;</code></pre>
+
+          <h3>Adding a lesson demo</h3>
+          <p>
+            Give it its own class and scope every rule to it, the way
+            <code>.flex-demo</code>, <code>.grid-demo</code> and
+            <code>.selector-demo</code> do. An unscoped element selector in a
+            shared stylesheet will eventually reach a page you were not thinking
+            about.
+          </p>
+        </section>
+
+        <!-- ---------------------------------------------------------- -->
+        <section class="doc-section">
+          <h2 id="running">14. Running it locally</h2>
+          <p>
+            Because the paths are relative, double-clicking any HTML file works.
+            A local server is still worth using — it matches how the site will
+            actually be served, and it makes the browser's developer tools
+            behave normally:
+          </p>
+          <pre><code>cd my-first-website
+python3 -m http.server 8777
+# then open http://localhost:8777/</code></pre>
+          <p>
+            To check the responsive behaviour, open developer tools
+            (<code>F12</code>), switch on the device toolbar
+            (<code>Ctrl</code>&nbsp;+&nbsp;<code>Shift</code>&nbsp;+&nbsp;<code>M</code>)
+            and drag the width through 1180px and 860px. The whole site is
+            static, so it can be published by copying the folder to any host.
+          </p>
+          <div class="note">
+            <strong>One thing to verify after every change:</strong> at 400px
+            wide the page must not scroll sideways. If it does, something inside
+            a <code>1fr</code> column is refusing to shrink — the fix is usually
+            <code>minmax(0, 1fr)</code> on the column, or an
+            <code>overflow-x: auto</code> wrapper around the wide element.
+          </div>
+        </section>
+      </main>
+
+      <!-- ================= HISTORY ================= -->
+      <section class="history">
+        <h2>Learning history</h2>
+        <ol>
+          <li>
+            <strong>Semantic HTML</strong>
+            <span>header, nav, main, article, footer</span>
+          </li>
+          <li>
+            <strong>Forms &amp; CSS basics</strong>
+            <span>A styled registration page</span>
+          </li>
+          <li>
+            <strong>Selectors</strong>
+            <span>Descendant, child and sibling</span>
+          </li>
+          <li>
+            <strong>Flexbox</strong>
+            <span>One axis, wrap, order, flex-grow</span>
+          </li>
+          <li>
+            <strong>CSS Grid</strong>
+            <span>Rows, columns, spans, named areas</span>
+          </li>
+          <li>
+            <strong>Responsive design</strong>
+            <span>Media queries and fluid units</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ================= PROFILES ================= -->
+      <section class="profiles">
+        <h2>Study group</h2>
+        <ul class="avatars">
+          <li>
+            <span class="avatar" aria-hidden="true">DM</span>
+            <span><b>Derrick M.</b><span>Building this site</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-2" aria-hidden="true">AK</span>
+            <span><b>Alice K.</b><span>Reviewing markup</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-3" aria-hidden="true">JB</span>
+            <span><b>Jean B.</b><span>Testing on mobile</span></span>
+          </li>
+          <li>
+            <span class="avatar avatar-4" aria-hidden="true">SN</span>
+            <span><b>Sam N.</b><span>Checking contrast</span></span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ================= USER INFO ================= -->
+      <section class="userinfo">
+        <h2>User information</h2>
+        <dl>
+          <dt>Name</dt>
+          <dd>Derrick Mugisha</dd>
+          <dt>Role</dt>
+          <dd>Front-end learner</dd>
+          <dt>Current unit</dt>
+          <dd>Layout &amp; responsiveness</dd>
+          <dt>Stack</dt>
+          <dd>HTML · CSS</dd>
+          <dt>Progress</dt>
+          <dd>6 of 6 lessons</dd>
+        </dl>
+      </section>
+
+      <!-- ================= FOOTER ================= -->
+      <footer class="footer">
+        <p>© 2026 My Tech Blog · Built by hand with HTML and CSS.</p>
+        <nav aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="index2.html">CSS Selectors</a>
+          <a href="flex.html">Flexbox</a>
+          <a href="grid.html">Grid</a>
+          <a href="form.html">Registration</a>
+          <a href="docs.html">Documentation</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>
