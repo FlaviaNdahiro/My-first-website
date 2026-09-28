@@ -5,66 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Flexbox study: one axis at a time, with a live demo of wrap, order, flex-grow and align-self."
+      content="Kitchen page: order tickets, cooking stations and order status."
     />
-    <title>Flexbox · My First Website</title>
+    <title>Kitchen · My First Website</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <div class="app">
-      <!-- ================= SIDEBAR ================= -->
+
       <aside class="sidebar">
-        <p class="brand">My First Website<span>HTML &amp; CSS only</span></p>
+        <p class="brand">My First Website<span>Fresh Food &amp; Drinks</span></p>
 
         <p class="nav-label">Navigation</p>
         <nav class="side-nav" aria-label="Main navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="index2.html">CSS Selectors</a></li>
-            <li><a href="flex.html" aria-current="page">Flexbox</a></li>
-            <li><a href="grid.html">Grid</a></li>
-            <li><a href="form.html">Registration</a></li>
-            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="dashboard.html">Orders</a></li>
+            <li><a href="index2.html">Menu</a></li>
+            <li><a href="flex.html" aria-current="page">Kitchen</a></li>
+            <li><a href="grid.html">Tables</a></li>
+            <li><a href="form.html">Staff Registration</a></li>
+            <li><a href="docs.html">Help</a></li>
           </ul>
         </nav>
 
-        <p class="side-note">
-          Every page on this site reuses one grid layout — the same sketch from
-          the Grid lesson.
-        </p>
+        <p class="side-note">Fresh food, served with care.</p>
       </aside>
 
-      <!-- ================= TOPBAR ================= -->
       <header class="topbar">
         <div>
-          <h1>Flexbox</h1>
-          <p class="crumbs"><a href="index.html">Home</a> · Lessons · Flexbox</p>
+          <h1>Kitchen</h1>
+          <p class="crumbs"><a href="index.html">Home</a> · Restaurant · Kitchen</p>
         </div>
         <div class="topbar-actions">
-          <a class="btn" href="index2.html">← Selectors</a>
-          <a class="btn btn-solid" href="grid.html">Next: Grid →</a>
+          <a class="btn" href="index2.html">← Menu</a>
+          <a class="btn btn-solid" href="grid.html">Next: Tables →</a>
         </div>
       </header>
 
-      <!-- ================= MAIN ================= -->
       <main class="main panel" id="main">
-        <h2>One axis at a time</h2>
+        <h2>Where the food is made</h2>
         <p class="lede">
-          Flexbox lays children out along a single direction — a row or a column
-          — and then shares the leftover space between them. That makes it the
-          right tool for nav bars, button rows and toolbars, and the wrong tool
-          for a full page layout.
+          Every order that comes from the dining room is sent to the kitchen.
+          The chefs cook it one ticket at a time, and the waiter takes it to
+          the table as soon as it is ready.
         </p>
 
         <section>
-          <h2>Live demo</h2>
+          <h2>Order tickets</h2>
           <p>
-            Four boxes in a flex container. The second one is the one being
-            experimented on: it has <code>order: 2</code> so it moves to the
-            end, and <code>flex: 1 1 100px</code> so it absorbs the spare room.
+            Four tickets on the kitchen board. Ticket 2 is a big party order:
+            it is cooked last and takes the extra space on the board.
           </p>
 
           <div class="flex-demo">
@@ -73,63 +66,39 @@
             <div class="child">3</div>
             <div class="child">4</div>
           </div>
-
-          <pre><code>.flex-demo {
-  display: flex;
-  justify-content: space-evenly;  /* along the main axis  */
-  align-items: center;            /* across the cross axis */
-  flex-wrap: wrap;                /* allow a second line   */
-  gap: 20px;
-}
-
-.flex-demo .child:nth-child(2) {
-  order: 2;            /* jump to the end             */
-  flex: 1 1 100px;     /* grow, shrink, 100px basis   */
-  align-self: center;  /* override align-items for me */
-}</code></pre>
         </section>
 
         <section>
-          <h2>Properties on the container</h2>
+          <h2>Cooking stations</h2>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>Property</th>
-                  <th>What it controls</th>
-                  <th>Common values</th>
+                  <th>Station</th>
+                  <th>What is made here</th>
+                  <th>Chef in charge</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><code>flex-direction</code></td>
-                  <td>Which way the main axis points</td>
-                  <td>row · column · row-reverse</td>
+                  <td>Drinks bar</td>
+                  <td>Fresh juices, tea, latte</td>
+                  <td>Sam N.</td>
                 </tr>
                 <tr>
-                  <td><code>justify-content</code></td>
-                  <td>Spacing along the main axis</td>
-                  <td>flex-start · center · space-between · space-evenly</td>
+                  <td>Salad corner</td>
+                  <td>Caesar, Cobb and harvest salads</td>
+                  <td>Jean B.</td>
                 </tr>
                 <tr>
-                  <td><code>align-items</code></td>
-                  <td>Position across the cross axis</td>
-                  <td>stretch · center · flex-end · baseline</td>
+                  <td>Pizza oven</td>
+                  <td>Four cheese and pepperoni pizza</td>
+                  <td>Alice K.</td>
                 </tr>
                 <tr>
-                  <td><code>flex-wrap</code></td>
-                  <td>Whether items may start a new line</td>
-                  <td>nowrap · wrap</td>
-                </tr>
-                <tr>
-                  <td><code>align-content</code></td>
-                  <td>Spacing between wrapped lines</td>
-                  <td>stretch · center · space-between</td>
-                </tr>
-                <tr>
-                  <td><code>gap</code></td>
-                  <td>Space between items</td>
-                  <td>Any length, e.g. <code>20px</code></td>
+                  <td>Bakery</td>
+                  <td>Croissants and fancy cakes</td>
+                  <td>Alice K.</td>
                 </tr>
               </tbody>
             </table>
@@ -137,117 +106,107 @@
         </section>
 
         <section>
-          <h2>Properties on the children</h2>
+          <h2>Order status</h2>
           <ul>
-            <li><code>order</code> — reorders visually without touching the HTML.</li>
-            <li><code>flex-grow</code> — share of the spare space this item takes.</li>
-            <li><code>flex-shrink</code> — how willingly it gives space back.</li>
-            <li><code>flex-basis</code> — its size before growing or shrinking.</li>
-            <li><code>align-self</code> — overrides <code>align-items</code> for one item.</li>
+            <li><strong>Received</strong> — the order has reached the kitchen.</li>
+            <li><strong>Cooking</strong> — the chef is preparing the food.</li>
+            <li><strong>Ready</strong> — waiting for the waiter to pick it up.</li>
+            <li><strong>Served</strong> — the food is on the customer's table.</li>
           </ul>
 
           <div class="note">
-            <strong>Two fixes worth remembering.</strong>
-            <code>align-content</code> only does something once the items wrap,
-            and there is no such value as <code>flex-center</code> — the
-            centring keyword is plain <code>center</code>.
+            <strong>Kitchen rule.</strong> Wash your hands before cooking, and
+            always check the allergy notice on the ticket.
           </div>
         </section>
 
         <section>
-          <h2>Flex or grid?</h2>
+          <h2>Need a table?</h2>
           <p>
-            Reach for flexbox when the content decides the sizes and you only
-            care about one direction. Reach for
-            <a href="grid.html">grid</a> when you are placing things into rows
-            <em>and</em> columns — which is exactly what the shell around this
-            text is doing.
+            Before an order is cooked, a table must be booked. See which tables
+            are free on the <a href="grid.html">Tables</a> page.
           </p>
         </section>
       </main>
 
-      <!-- ================= HISTORY ================= -->
       <section class="history">
-        <h2>Learning history</h2>
+        <h2>Recent activity</h2>
         <ol>
           <li>
-            <strong>Semantic HTML</strong>
-            <span>header, nav, main, article, footer</span>
+            <strong>New order</strong>
+            <span>Table 4 booked</span>
           </li>
           <li>
-            <strong>Forms &amp; CSS basics</strong>
-            <span>A styled registration page</span>
+            <strong>Menu updated</strong>
+            <span>New drinks added</span>
           </li>
           <li>
-            <strong>Selectors</strong>
-            <span>Descendant, child and sibling</span>
+            <strong>Kitchen</strong>
+            <span>Order sent to chef</span>
           </li>
           <li>
-            <strong>Flexbox</strong>
-            <span>One axis, wrap, order, flex-grow</span>
+            <strong>Tables</strong>
+            <span>3 tables free</span>
           </li>
           <li>
-            <strong>CSS Grid</strong>
-            <span>Rows, columns, spans, named areas</span>
+            <strong>Payment</strong>
+            <span>Bill received</span>
           </li>
           <li>
-            <strong>Responsive design</strong>
-            <span>Media queries and fluid units</span>
+            <strong>Staff</strong>
+            <span>New waiter registered</span>
           </li>
         </ol>
       </section>
 
-      <!-- ================= PROFILES ================= -->
       <section class="profiles">
-        <h2>Study group</h2>
+        <h2>Our team</h2>
         <ul class="avatars">
           <li>
             <span class="avatar" aria-hidden="true">DM</span>
-            <span><b>Derrick M.</b><span>Building this site</span></span>
+            <span><b>Derrick M.</b><span>Restaurant manager</span></span>
           </li>
           <li>
             <span class="avatar avatar-2" aria-hidden="true">AK</span>
-            <span><b>Alice K.</b><span>Reviewing markup</span></span>
+            <span><b>Alice K.</b><span>Head chef</span></span>
           </li>
           <li>
             <span class="avatar avatar-3" aria-hidden="true">JB</span>
-            <span><b>Jean B.</b><span>Testing on mobile</span></span>
+            <span><b>Jean B.</b><span>Waiter</span></span>
           </li>
           <li>
             <span class="avatar avatar-4" aria-hidden="true">SN</span>
-            <span><b>Sam N.</b><span>Checking contrast</span></span>
+            <span><b>Sam N.</b><span>Cashier</span></span>
           </li>
         </ul>
       </section>
 
-      <!-- ================= USER INFO ================= -->
       <section class="userinfo">
         <h2>User information</h2>
         <dl>
           <dt>Name</dt>
-          <dd>Derrick Mugisha</dd>
+          <dd>Ndahiro Flavia</dd>
           <dt>Role</dt>
-          <dd>Front-end learner</dd>
-          <dt>Current unit</dt>
-          <dd>Layout &amp; responsiveness</dd>
-          <dt>Stack</dt>
-          <dd>HTML · CSS</dd>
-          <dt>Progress</dt>
-          <dd>6 of 6 lessons</dd>
+          <dd>Restaurant manager</dd>
+          <dt>Shift</dt>
+          <dd>Morning</dd>
+          <dt>Tables</dt>
+          <dd>12 tables</dd>
+          <dt>Orders today</dt>
+          <dd>24 orders</dd>
         </dl>
       </section>
 
-      <!-- ================= FOOTER ================= -->
       <footer class="footer">
-        <p>© 2026 My Tech Blog · Built by hand with HTML and CSS.</p>
+        <p>© 2026 My First Website · Fresh food, served with care.</p>
         <nav aria-label="Footer navigation">
           <a href="index.html">Home</a>
-          <a href="dashboard.html">Dashboard</a>
-          <a href="index2.html">CSS Selectors</a>
-          <a href="flex.html">Flexbox</a>
-          <a href="grid.html">Grid</a>
-          <a href="form.html">Registration</a>
-          <a href="docs.html">Documentation</a>
+          <a href="dashboard.html">Orders</a>
+          <a href="index2.html">Menu</a>
+          <a href="flex.html">Kitchen</a>
+          <a href="grid.html">Tables</a>
+          <a href="form.html">Staff Registration</a>
+          <a href="docs.html">Help</a>
         </nav>
       </footer>
     </div>

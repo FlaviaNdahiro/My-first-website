@@ -1,61 +1,55 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta
       name="description"
-      content="Registration form: labelled inputs, a select, a radio group and a textarea, built with HTML and CSS only."
+      content="Staff registration form for the restaurant: name, address, position, user name and password."
     />
-    <title>Registration · My First Website</title>
+    <title>Staff Registration · My First Website</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <div class="app">
-      <!-- ================= SIDEBAR ================= -->
+   
       <aside class="sidebar">
-        <p class="brand">My First Website<span>HTML &amp; CSS only</span></p>
+        <p class="brand">My First Website<span>Fresh Food &amp; Drinks</span></p>
 
         <p class="nav-label">Navigation</p>
         <nav class="side-nav" aria-label="Main navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="index2.html">CSS Selectors</a></li>
-            <li><a href="flex.html">Flexbox</a></li>
-            <li><a href="grid.html">Grid</a></li>
-            <li><a href="form.html" aria-current="page">Registration</a></li>
-            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="dashboard.html">Orders</a></li>
+            <li><a href="index2.html">Menu</a></li>
+            <li><a href="flex.html">Kitchen</a></li>
+            <li><a href="grid.html">Tables</a></li>
+            <li><a href="form.html" aria-current="page">Staff Registration</a></li>
+            <li><a href="docs.html">Help</a></li>
           </ul>
         </nav>
 
-        <p class="side-note">
-          Every page on this site reuses one grid layout — the same sketch from
-          the Grid lesson.
-        </p>
+        <p class="side-note">Fresh food, served with care.</p>
       </aside>
 
-      <!-- ================= TOPBAR ================= -->
       <header class="topbar">
         <div>
-          <h1>Registration</h1>
-          <p class="crumbs"><a href="index.html">Home</a> · Forms · Register</p>
+          <h1>Staff Registration</h1>
+          <p class="crumbs"><a href="index.html">Home</a> · Staff · Register</p>
         </div>
         <div class="topbar-actions">
-          <a class="btn" href="grid.html">← Grid</a>
-          <a class="btn btn-solid" href="dashboard.html">Dashboard</a>
+          <a class="btn" href="grid.html"> Tables</a>
+          <a class="btn btn-solid" href="dashboard.html">Orders</a>
         </div>
       </header>
 
-      <!-- ================= MAIN ================= -->
       <main class="main panel" id="main">
-        <h2>Tell us about yourself</h2>
+        <h2>Register a new staff member</h2>
         <p class="lede">
-          Every field below is tied to its label through matching
-          <code>for</code> and <code>id</code> attributes, so clicking the label
-          focuses the field and screen readers announce the right name.
+          Fill in this form to add a new worker to the restaurant system. Every
+          field is required, so please check the details before you submit.
         </p>
 
         <form action="/submit" method="POST" class="form-container">
@@ -67,19 +61,19 @@
                 id="full-name"
                 name="full-name"
                 autocomplete="name"
-                placeholder="Enter your full name"
+                placeholder="Enter the full name"
                 required
               />
             </div>
 
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="address">Address</label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                autocomplete="email"
-                placeholder="you@example.com"
+                type="text"
+                id="address"
+                name="address"
+                autocomplete="street-address"
+                placeholder="Enter the home address"
                 required
               />
             </div>
@@ -93,197 +87,19 @@
                 id="phone"
                 name="phone"
                 autocomplete="tel"
-                placeholder="+250 7XX XXX XXX"
+                placeholder="+250 780050661"
                 required
               />
               <span class="hint">Digits, spaces and a leading + are fine.</span>
             </div>
 
-            <div class="form-group">
-              <label for="subject">Subject category</label>
-              <select id="subject" name="subject" required>
-                <option value="">Select a subject category</option>
-                <option value="customer-support">Customer support</option>
-                <option value="sales-inquiry">Sales inquiry</option>
-                <option value="general-question">General question</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <fieldset>
-              <legend>Preferred contact method</legend>
-              <div class="radio-row">
-                <label for="contact-email">
-                  <input
-                    type="radio"
-                    id="contact-email"
-                    name="contact-method"
-                    value="email"
-                    checked
-                  />
-                  Email
-                </label>
-                <label for="contact-phone">
-                  <input
-                    type="radio"
-                    id="contact-phone"
-                    name="contact-method"
-                    value="phone"
-                  />
-                  Phone call
-                </label>
-                <label for="contact-sms">
-                  <input
-                    type="radio"
-                    id="contact-sms"
-                    name="contact-method"
-                    value="sms"
-                  />
-                  Text message
-                </label>
-              </div>
-            </fieldset>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              placeholder="Write your message..."
-              required
-            ></textarea>
-          </div>
-
-          <div class="form-btn">
-            <button type="submit">Submit form</button>
-            <button type="reset">Reset form</button>
-          </div>
-        </form>
-
-        <section>
-          <h2>What makes a form accessible</h2>
-          <ul>
-            <li>
-              Every control has a <code>&lt;label for="..."&gt;</code> pointing at
-              its <code>id</code> — a <code>for</code> that matches nothing gives
-              the field no name at all.
-            </li>
-            <li>
-              The right <code>type</code> matters: <code>email</code> and
-              <code>tel</code> bring up the correct keyboard on a phone and give
-              you free validation.
-            </li>
-            <li>
-              Radio buttons share one <code>name</code> so the browser treats
-              them as a single choice, and a <code>&lt;fieldset&gt;</code> with a
-              <code>&lt;legend&gt;</code> tells the reader what the choice is for.
-            </li>
-            <li>
-              The first <code>&lt;option&gt;</code> of a required select has an
-              empty value, so &ldquo;Select a subject category&rdquo; cannot be
-              submitted as an answer.
-            </li>
-            <li>
-              Focus stays visible — the fields keep a brown outline instead of
-              <code>outline: none</code>, which would leave keyboard users lost.
-            </li>
-          </ul>
-
-          <div class="note">
-            <strong>No JavaScript here.</strong> The layout, the two-column
-            fields and the validation messages are all browser behaviour that
-            comes free with correct HTML.
-          </div>
-        </section>
-      </main>
-
-      <!-- ================= HISTORY ================= -->
-      <section class="history">
-        <h2>Learning history</h2>
-        <ol>
-          <li>
-            <strong>Semantic HTML</strong>
-            <span>header, nav, main, article, footer</span>
-          </li>
-          <li>
-            <strong>Forms &amp; CSS basics</strong>
-            <span>A styled registration page</span>
-          </li>
-          <li>
-            <strong>Selectors</strong>
-            <span>Descendant, child and sibling</span>
-          </li>
-          <li>
-            <strong>Flexbox</strong>
-            <span>One axis, wrap, order, flex-grow</span>
-          </li>
-          <li>
-            <strong>CSS Grid</strong>
-            <span>Rows, columns, spans, named areas</span>
-          </li>
-          <li>
-            <strong>Responsive design</strong>
-            <span>Media queries and fluid units</span>
-          </li>
-        </ol>
-      </section>
-
-      <!-- ================= PROFILES ================= -->
-      <section class="profiles">
-        <h2>Study group</h2>
-        <ul class="avatars">
-          <li>
-            <span class="avatar" aria-hidden="true">DM</span>
-            <span><b>Derrick M.</b><span>Building this site</span></span>
-          </li>
-          <li>
-            <span class="avatar avatar-2" aria-hidden="true">AK</span>
-            <span><b>Alice K.</b><span>Reviewing markup</span></span>
-          </li>
-          <li>
-            <span class="avatar avatar-3" aria-hidden="true">JB</span>
-            <span><b>Jean B.</b><span>Testing on mobile</span></span>
-          </li>
-          <li>
-            <span class="avatar avatar-4" aria-hidden="true">SN</span>
-            <span><b>Sam N.</b><span>Checking contrast</span></span>
-          </li>
-        </ul>
-      </section>
-
-      <!-- ================= USER INFO ================= -->
-      <section class="userinfo">
-        <h2>User information</h2>
-        <dl>
-          <dt>Name</dt>
-          <dd>Derrick Mugisha</dd>
-          <dt>Role</dt>
-          <dd>Front-end learner</dd>
-          <dt>Current unit</dt>
-          <dd>Layout &amp; responsiveness</dd>
-          <dt>Stack</dt>
-          <dd>HTML · CSS</dd>
-          <dt>Progress</dt>
-          <dd>6 of 6 lessons</dd>
-        </dl>
-      </section>
-
-      <!-- ================= FOOTER ================= -->
-      <footer class="footer">
-        <p>© 2026 My Tech Blog · Built by hand with HTML and CSS.</p>
-        <nav aria-label="Footer navigation">
-          <a href="index.html">Home</a>
-          <a href="dashboard.html">Dashboard</a>
-          <a href="index2.html">CSS Selectors</a>
-          <a href="flex.html">Flexbox</a>
-          <a href="grid.html">Grid</a>
-          <a href="form.html">Registration</a>
-          <a href="docs.html">Documentation</a>
-        </nav>
-      </footer>
-    </div>
-  </body>
-</html>
+            <label for="position">Position
+<select id="position" name="position" required>
+  <option value="">Select a position</option>
+  <option value="manager">Manager</option>
+  <option value="chef">Chef</option>
+  <option value="waiter">Waiter / Waitress</option>
+  <option value="cashier">Cashier</option>
+  <option value="cleaner">Cleaner</option>
+</select>
+</label>
