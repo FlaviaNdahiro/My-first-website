@@ -3,21 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Tables page: restaurant floor plan, table status and booking rules."
-    />
-    <title>Tables·My First Website</title>
+    <meta name="description" content="Tables page: restaurant floor plan, table status and booking rules." />
+    <title>Tables · My First Website</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <div class="app">
-
       <aside class="sidebar">
         <p class="brand">My First Website<span>Fresh Food &amp; Drinks</span></p>
-
         <p class="nav-label">Navigation</p>
         <nav class="side-nav" aria-label="Main navigation">
           <ul>
@@ -30,36 +24,24 @@
             <li><a href="docs.html">Help</a></li>
           </ul>
         </nav>
-
         <p class="side-note">Fresh food, served with care.</p>
       </aside>
-
       <header class="topbar">
         <div>
           <h1>Tables</h1>
           <p class="crumbs"><a href="index.html">Home</a> · Restaurant · Tables</p>
         </div>
         <div class="topbar-actions">
-          <a class="btn" href="flex.html">Kitchen</a>
+          <a class="btn" href="flex.html">← Kitchen</a>
           <a class="btn btn-solid" href="form.html">Next: Staff Registration →</a>
         </div>
       </header>
-
       <main class="main panel" id="main">
         <h2>Our dining room</h2>
-        <p class="lede">
-          The restaurant has 12 tables in four areas. Check this page before
-          you seat a customer, so nobody waits at a table that is already
-          taken.
-        </p>
-
+        <p class="lede">The restaurant has 12 tables in four areas. Check this page before you seat a customer, so nobody waits at a table that is already taken.</p>
         <section>
           <h2>Floor plan</h2>
-          <p>
-            The plan below shows where each area is, from the kitchen on the
-            left to the terrace at the bottom right.
-          </p>
-
+          <p>The plan below shows where each area is, from the kitchen on the left to the terrace at the bottom right.</p>
           <div class="grid-demo">
             <div class="div1">Kitchen</div>
             <div class="div2">Entrance and reception</div>
@@ -69,14 +51,78 @@
             <div class="div10">Terrace (3 tables)</div>
           </div>
         </section>
-
         <section>
           <h2>Booking rules</h2>
-          <p>
-            A table is booked by the waiter or by the manager. The customer
-            gets the table for up to two hours at busy times.
-          </p>
-
-          <div class="note">
-            <strong>Tip:</strong> seat groups of four or more in the main hall
-            or at the family tables, and keep the terrace
+          <p>A table is booked by the waiter or by the manager. The customer gets the table for up to two hours at busy times.</p>
+          <div class="note"><strong>Tip:</strong> seat groups of four or more in the main hall or at the family tables, and keep the terrace for couples and small groups.</div>
+        </section>
+        <section>
+          <h2>Opening hours</h2>
+          <div class="cards">
+            <article class="card"><h3>Morning</h3><p>Tea, coffee, croissants and fresh juice. Mostly small tables and quick service.</p></article>
+            <article class="card"><h3>Lunch</h3><p>The busiest time. Salads and pizza are ordered a lot, so book large tables early.</p></article>
+            <article class="card"><h3>Evening</h3><p>Relaxed dinners on the terrace and in the main hall, with desserts and hot drinks.</p></article>
+          </div>
+        </section>
+        <section>
+          <h2>Table status</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Table</th><th>Area</th><th>Seats</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Table 1</td><td>Main hall</td><td>4</td><td>Free</td></tr>
+                <tr><td>Table 2</td><td>Main hall</td><td>2</td><td>Busy</td></tr>
+                <tr><td>Table 4</td><td>Main hall</td><td>4</td><td>Booked</td></tr>
+                <tr><td>Table 7</td><td>Family area</td><td>6</td><td>Free</td></tr>
+                <tr><td>Table 10</td><td>Terrace</td><td>2</td><td>Free</td></tr>
+                <tr><td>Table 12</td><td>Terrace</td><td>4</td><td>Busy</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+      <section class="history">
+        <h2>Recent activity</h2>
+        <ol>
+          <li><strong>New order</strong><span>Table 4 booked</span></li>
+          <li><strong>Menu updated</strong><span>New drinks added</span></li>
+          <li><strong>Kitchen</strong><span>Order sent to chef</span></li>
+          <li><strong>Tables</strong><span>3 tables free</span></li>
+          <li><strong>Payment</strong><span>Bill received</span></li>
+          <li><strong>Staff</strong><span>New waiter registered</span></li>
+        </ol>
+      </section>
+      <section class="profiles">
+        <h2>Our team</h2>
+        <ul class="avatars">
+          <li><span class="avatar" aria-hidden="true">FN</span><span><b>Flavia Ndahiro</b><span>Restaurant manager</span></span></li>
+          <li><span class="avatar avatar-2" aria-hidden="true">AK</span><span><b>Edda M.</b><span>Head chef</span></span></li>
+          <li><span class="avatar avatar-3" aria-hidden="true">JB</span><span><b>Junior M.</b><span>Waiter</span></span></li>
+          <li><span class="avatar avatar-4" aria-hidden="true">SN</span><span><b>Teta k.</b><span>Cashier</span></span></li>
+        </ul>
+      </section>
+      <section class="userinfo">
+        <h2>User information</h2>
+        <dl>
+          <dt>Name</dt><dd>Flavia Ndahiro</dd>
+          <dt>Role</dt><dd>Restaurant manager</dd>
+          <dt>Shift</dt><dd>Morning</dd>
+          <dt>Tables</dt><dd>12 tables</dd>
+          <dt>Orders today</dt><dd>24 orders</dd>
+        </dl>
+      </section>
+      <footer class="footer">
+        <p>© 2026 My First Website · Fresh food, served with care.</p>
+        <nav aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Orders</a>
+          <a href="index2.html">Menu</a>
+          <a href="flex.html">Kitchen</a>
+          <a href="grid.html">Tables</a>
+          <a href="form.html">Staff Registration</a>
+          <a href="docs.html">Help</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>
