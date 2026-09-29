@@ -5,200 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="CSS Grid study: the dashboard sketch that became the layout of this entire website."
+      content="Restaurant menu: fresh drinks, salads, pizzas and desserts."
     />
-    <title>Grid · My First Website</title>
+    <title>Menu · My First Website</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <div class="app">
-  
+
       <aside class="sidebar">
-        <p class="brand">My First Website<span>HTML &amp; CSS only</span></p>
+        <p class="brand">My First Website<span>Fresh Food &amp; Drinks</span></p>
 
         <p class="nav-label">Navigation</p>
         <nav class="side-nav" aria-label="Main navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="index2.html">CSS Selectors</a></li>
-            <li><a href="flex.html">Flexbox</a></li>
-            <li><a href="grid.html" aria-current="page">Grid</a></li>
-            <li><a href="form.html">Registration</a></li>
-            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="Dashbroad.html">Orders</a></li>
+            <li><a href="index.html" aria-current="page">Menu</a></li>
+            <li><a href="flex.html">Kitchen</a></li>
+            <li><a href="grid.html">Tables</a></li>
+            <li><a href="form.html">Staff Registration</a></li>
+            <li><a href="docs.html">Help</a></li>
           </ul>
         </nav>
 
-        <p class="side-note">
-          Every page on this site reuses one grid layout — the same sketch from
-          the Grid lesson.
-        </p>
+        <p class="side-note">Fresh food, served with care.</p>
       </aside>
 
       <header class="topbar">
         <div>
-          <h1>CSS Grid</h1>
-          <p class="crumbs"><a href="index.html">Home</a> · Lessons · Grid</p>
+          <h1>Menu</h1>
+          <p class="crumbs"><a href="index.html">Home</a> · Restaurant · Menu</p>
         </div>
         <div class="topbar-actions">
-          <a class="btn" href="flex.html">← Flexbox</a>
-          <a class="btn btn-solid" href="form.html">Next: Registration →</a>
+          <a class="btn" href="dashboard.html">← Orders</a>
+          <a class="btn btn-solid" href="flex.html">Next: Kitchen →</a>
         </div>
       </header>
 
       <main class="main panel" id="main">
-        <h2>The sketch that became this site</h2>
+        <h2>What we serve today</h2>
         <p class="lede">
-          This dashboard started as a 5&nbsp;×&nbsp;5 grid exercise: a sidebar, a
-          navbar, a main panel, a history list, a profile strip and a user
-          information box. That sketch is no longer a demo — it is the layout
-          you are reading this in.
+          Everything on our menu is made fresh every morning. Choose a
+          category below to see what the kitchen is cooking, from cold drinks
+          to hot pizza.
         </p>
 
         <section>
-          <h2>The original 5 × 5 demo</h2>
-          <p>
-            Five equal columns, five equal rows, and six children that each span
-            a different number of cells.
-          </p>
-
-          <div class="grid-demo">
-            <div class="div1">Side bar</div>
-            <div class="div2">Navbar with navigation</div>
-            <div class="div3">Main content with content cards</div>
-            <div class="div8">History as a list</div>
-            <div class="div9">Profile picture list</div>
-            <div class="div10">User information</div>
-          </div>
-
-          <pre><code>.grid-demo {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 8px;
-}
-
-.div1 { grid-row: span 5 / span 5; }              /* full-height sidebar */
-.div2 { grid-column: span 4 / span 4; }           /* navbar across the top */
-.div3 { grid-column: span 3 / span 3;
-        grid-row: span 3 / span 3;
-        grid-column-start: 2; grid-row-start: 2; } /* main content */</code></pre>
-        </section>
-
-        <section>
-          <h2>From demo to real layout</h2>
-          <p>
-            Spans and line numbers work, but they are hard to read six months
-            later. Named areas say the same thing in a shape you can see at a
-            glance — so the shell of this site uses those instead.
-          </p>
-
-          <pre><code>.app {
-  display: grid;
-  grid-template-columns: 240px 1fr 1fr 300px;
-  grid-template-rows: auto 1fr auto auto;
-  grid-template-areas:
-    "side  nav   nav   nav"
-    "side  main  main  hist"
-    "side  prof  prof  user"
-    "side  foot  foot  foot";
-}
-
-.sidebar { grid-area: side; }
-.topbar  { grid-area: nav;  }
-.main    { grid-area: main; }</code></pre>
-
-          <div class="note">
-            <strong>Why <code>auto 1fr auto auto</code>?</strong> The navbar and
-            the bottom panels only need the height of their content
-            (<code>auto</code>), while <code>1fr</code> lets the main panel take
-            every remaining pixel — so short pages still fill the screen.
-          </div>
-        </section>
-
-        <section>
-          <h2>Making it responsive</h2>
-          <p>
-            Named areas make a breakpoint almost trivial: redraw the picture with
-            fewer columns and every panel follows.
-          </p>
-
+          <h2>Menu categories</h2>
           <div class="cards">
-            <article class="card">
-              <h3>Above 1180px</h3>
-              <p>
-                Four columns. Sidebar, main content and the history panel all
-                sit side by side, with the profile and user boxes underneath.
-              </p>
-            </article>
-            <article class="card">
-              <h3>861px – 1180px</h3>
-              <p>
-                Three columns. The history panel drops below the main content and
-                its list becomes two columns so the height stays sensible.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Up to 860px</h3>
-              <p>
-                One column. The sidebar turns into a horizontally scrollable row
-                of pills at the top, and every panel stacks in reading order.
-              </p>
-            </article>
-          </div>
-
-          <pre><code>@media (max-width: 860px) {
-  .app {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "nav" "side" "main" "hist" "prof" "user" "foot";
-  }
-}</code></pre>
-
-          <div class="note">
-            <strong>Try it:</strong> narrow this window and watch the panels
-            above change places. The demo grid itself stacks into a single
-            column below 560px, because five equal columns on a phone would be
-            unreadable.
+            <div class="card">
+              <h3>Fresh drinks</h3>
+              <p>Carrot fresh, orange juice, green tea, latte and milk.</p>
+            </div>
+            <div class="card">
+              <h3>Salads</h3>
+              <p>Chicken Caesar, classic Cobb and harvest salad.</p>
+            </div>
+            <div class="card">
+              <h3>Pizza</h3>
+              <p>Four cheese and pepperoni, baked hot in the oven.</p>
+            </div>
+            <div class="card">
+              <h3>Bakery &amp; sweets</h3>
+              <p>Croissants and fancy cakes, baked fresh every day.</p>
+            </div>
           </div>
         </section>
 
         <section>
-          <h2>Useful grid vocabulary</h2>
+          <h2>Today's special</h2>
+          <p>
+            Order any pizza with a fresh drink and get the drink at half
+            price. Ask your waiter for today's offer.
+          </p>
+
+          <div class="note">
+            <strong>Allergy notice.</strong> Tell your waiter if you have any
+            food allergy. The kitchen will prepare your meal with care.
+          </div>
+        </section>
+
+        <section>
+          <h2>Price list</h2>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>Property</th>
-                  <th>What it does</th>
+                  <th>Item</th>
+                  <th>Category</th>
+                  <th>Price (RWF)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><code>grid-template-columns</code></td>
-                  <td>Defines the column tracks, e.g. <code>repeat(5, 1fr)</code></td>
+                  <td>Carrot fresh</td>
+                  <td>Drink</td>
+                  <td>2,000</td>
                 </tr>
                 <tr>
-                  <td><code>grid-template-areas</code></td>
-                  <td>Draws the layout as a picture of named regions</td>
+                  <td>Orange juice</td>
+                  <td>Drink</td>
+                  <td>2,000</td>
                 </tr>
                 <tr>
-                  <td><code>grid-area</code></td>
-                  <td>Assigns an element to one of those names</td>
+                  <td>Coca-Cola / Fanta</td>
+                  <td>Drink</td>
+                  <td>1,000</td>
                 </tr>
                 <tr>
-                  <td><code>span n</code></td>
-                  <td>Makes an item cover <em>n</em> tracks</td>
+                  <td>Chicken Caesar salad</td>
+                  <td>Salad</td>
+                  <td>5,500</td>
                 </tr>
                 <tr>
-                  <td><code>minmax()</code></td>
-                  <td>A track that never shrinks or grows past given bounds</td>
+                  <td>Four cheese pizza</td>
+                  <td>Pizza</td>
+                  <td>8,000</td>
                 </tr>
                 <tr>
-                  <td><code>auto-fit</code> + <code>minmax()</code></td>
-                  <td>Cards that rewrap themselves with no media query at all</td>
+                  <td>Pepperoni pizza</td>
+                  <td>Pizza</td>
+                  <td>8,500</td>
+                </tr>
+                <tr>
+                  <td>Croissant</td>
+                  <td>Bakery</td>
+                  <td>1,500</td>
+                </tr>
+                <tr>
+                  <td>Fancy cake (slice)</td>
+                  <td>Dessert</td>
+                  <td>3,000</td>
                 </tr>
               </tbody>
             </table>
@@ -207,53 +147,53 @@
       </main>
 
       <section class="history">
-        <h2>Learning history</h2>
+        <h2>Recent activity</h2>
         <ol>
           <li>
-            <strong>Semantic HTML</strong>
-            <span>header, nav, main, article, footer</span>
+            <strong>New order</strong>
+            <span>Table 4 booked</span>
           </li>
           <li>
-            <strong>Forms &amp; CSS basics</strong>
-            <span>A styled registration page</span>
+            <strong>Menu updated</strong>
+            <span>New drinks added</span>
           </li>
           <li>
-            <strong>Selectors</strong>
-            <span>Descendant, child and sibling</span>
+            <strong>Kitchen</strong>
+            <span>Order sent to chef</span>
           </li>
           <li>
-            <strong>Flexbox</strong>
-            <span>One axis, wrap, order, flex-grow</span>
+            <strong>Tables</strong>
+            <span>3 tables free</span>
           </li>
           <li>
-            <strong>CSS Grid</strong>
-            <span>Rows, columns, spans, named areas</span>
+            <strong>Payment</strong>
+            <span>Bill received</span>
           </li>
           <li>
-            <strong>Responsive design</strong>
-            <span>Media queries and fluid units</span>
+            <strong>Staff</strong>
+            <span>New waiter registered</span>
           </li>
         </ol>
       </section>
 
       <section class="profiles">
-        <h2>Study group</h2>
+        <h2>Our team</h2>
         <ul class="avatars">
           <li>
             <span class="avatar" aria-hidden="true">DM</span>
-            <span><b>Derrick M.</b><span>Building this site</span></span>
+            <span><b>Flavia N.</b><span>Restaurant manager</span></span>
           </li>
           <li>
             <span class="avatar avatar-2" aria-hidden="true">AK</span>
-            <span><b>Alice K.</b><span>Reviewing markup</span></span>
+            <span><b>Teta K.</b><span>Head chef</span></span>
           </li>
           <li>
             <span class="avatar avatar-3" aria-hidden="true">JB</span>
-            <span><b>Jean B.</b><span>Testing on mobile</span></span>
+            <span><b>Junior M.</b><span>Waiter</span></span>
           </li>
           <li>
             <span class="avatar avatar-4" aria-hidden="true">SN</span>
-            <span><b>Sam N.</b><span>Checking contrast</span></span>
+            <span><b>Sam N.</b><span>Cashier</span></span>
           </li>
         </ul>
       </section>
@@ -262,28 +202,28 @@
         <h2>User information</h2>
         <dl>
           <dt>Name</dt>
-          <dd>Derrick Mugisha</dd>
+          <dd>Ndahiro Flavia</dd>
           <dt>Role</dt>
-          <dd>Front-end learner</dd>
-          <dt>Current unit</dt>
-          <dd>Layout &amp; responsiveness</dd>
-          <dt>Stack</dt>
-          <dd>HTML · CSS</dd>
-          <dt>Progress</dt>
-          <dd>6 of 6 lessons</dd>
+          <dd>Restaurant manager</dd>
+          <dt>Shift</dt>
+          <dd>Morning</dd>
+          <dt>Tables</dt>
+          <dd>12 tables</dd>
+          <dt>Orders today</dt>
+          <dd>24 orders</dd>
         </dl>
       </section>
 
       <footer class="footer">
-        <p>© 2026 My Tech Blog · Built by hand with HTML and CSS.</p>
+        <p>© 2026 My First Website · Fresh food, served with care.</p>
         <nav aria-label="Footer navigation">
           <a href="index.html">Home</a>
-          <a href="dashboard.html">Dashboard</a>
-          <a href="index2.html">CSS Selectors</a>
-          <a href="flex.html">Flexbox</a>
-          <a href="grid.html">Grid</a>
-          <a href="form.html">Registration</a>
-          <a href="docs.html">Documentation</a>
+          <a href="dashboard.html">Orders</a>
+          <a href="index.html">Menu</a>
+          <a href="flex.html">Kitchen</a>
+          <a href="grid.html">Tables</a>
+          <a href="form.html">Staff Registration</a>
+          <a href="docs.html">Help</a>
         </nav>
       </footer>
     </div>
